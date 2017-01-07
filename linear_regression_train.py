@@ -34,6 +34,8 @@ def linear_regression(x , y, max_iter, learning_rate):
     w = [0] * x[0].size
     next_w = w
     for i in xrange(max_iter):
+        if i % 20 == 0:
+            print i
         for j in xrange(len(w)):
             next_w[j] = w[j] - learning_rate * gradient(w,x,y,j)
         w = next_w
@@ -49,6 +51,6 @@ def write_weight_file(w):
 
 if __name__ == '__main__':
     x_train, y_train, x_test, y_test = parse_input_file(sys.argv[1])
-    w = linear_regression(x_train ,y_train ,10 , 0.1)
+    w = linear_regression(x_train ,y_train ,1000 , 0.1)
 
     write_weight_file(w)
